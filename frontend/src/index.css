@@ -1,0 +1,64 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens. Everything in the UI should come from here:
+ *   type     — Inter; page title 2xl-4xl, section title xl-2xl, card title sm, body base, meta xs
+ *   color    — navy brand surfaces, amber accent for primary actions, red only for deals, canvas grey behind white panels
+ *   radius   — `rounded-card` (8px) for panels and cards; `rounded-md` (6px) for controls
+ *   shadow   — `shadow-card` at rest, `shadow-card-hover` on interaction
+ *   spacing  — sections are separated by 24px (mobile) / 32px (desktop); panel padding 16px / 24px
+ */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --color-brand-950: #0b1220;
+  --color-brand-900: #0f172a;
+  --color-brand-800: #1e293b;
+  --color-brand-700: #334155;
+
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+
+  --color-link: #0b5f8a;
+  --color-deal: #b91c1c;
+  --color-success: #15803d;
+  --color-warning: #b45309;
+
+  --color-canvas: #eceff3;
+  --color-line: #dde2e8;
+
+  --radius-card: 0.5rem;
+
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.06), 0 1px 3px rgb(15 23 42 / 0.08);
+  --shadow-card-hover: 0 6px 16px rgb(15 23 42 / 0.14);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-canvas font-sans text-slate-900 antialiased;
+  }
+  a,
+  button,
+  select,
+  textarea,
+  input {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-500;
+  }
+  button {
+    @apply cursor-pointer disabled:cursor-not-allowed;
+  }
+}
+
+@layer utilities {
+  /* Horizontal scrollers (category nav, product rails) keep scrolling but hide the bar. */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
