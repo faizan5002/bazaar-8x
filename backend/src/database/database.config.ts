@@ -10,9 +10,7 @@ export function typeOrmOptions(config: ConfigService): TypeOrmModuleOptions {
     username: config.get<string>('DB_USERNAME', 'postgres'),
     password: config.get<string>('DB_PASSWORD'),
     database: config.get<string>('DB_DATABASE', 'marketplace'),
-    ssl: config.get<string>('NODE_ENV') !== 'development'
-      ? { rejectUnauthorized: false }
-      : false,
+    ssl: { rejectUnauthorized: false },
     autoLoadEntities: true,
     synchronize: config.get<string>('NODE_ENV') !== 'production',
   };
