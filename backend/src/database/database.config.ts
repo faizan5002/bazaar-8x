@@ -10,8 +10,10 @@ export function typeOrmOptions(config: ConfigService): TypeOrmModuleOptions {
     username: config.get<string>('DB_USERNAME', 'postgres'),
     password: config.get<string>('DB_PASSWORD'),
     database: config.get<string>('DB_DATABASE', 'marketplace'),
+    ssl: config.get<string>('NODE_ENV') !== 'development'
+      ? { rejectUnauthorized: false }
+      : false,
     autoLoadEntities: true,
-    // MVP: schema is derived from entities. Switch to migrations before any real deployment.
     synchronize: config.get<string>('NODE_ENV') !== 'production',
   };
 }
